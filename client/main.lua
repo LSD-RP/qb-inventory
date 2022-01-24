@@ -629,7 +629,7 @@ RegisterCommand('inventory', function()
     end
 end)
 
-RegisterKeyMapping('inventory', 'Open Inventory', 'keyboard', 'TAB')
+RegisterKeyMapping('inventory', 'Open Inventory', 'keyboard', 'F2')
 
 RegisterCommand('hotbar', function()
     isHotbar = not isHotbar
@@ -640,7 +640,7 @@ RegisterCommand('hotbar', function()
 	end)
 end)
 
-RegisterKeyMapping('hotbar', 'Toggles keybind slots', 'keyboard', 'z')
+RegisterKeyMapping('hotbar', 'Toggles keybind slots', 'keyboard', 'TAB')
 
 for i=1, 6 do
     RegisterCommand('slot' .. i,function()
