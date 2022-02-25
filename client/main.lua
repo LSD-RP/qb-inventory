@@ -557,93 +557,73 @@ RegisterCommand('inventory', function()
                 end
             end
 
-                if CurrentVehicle ~= nil then		-- Trunk
-                    local vehicleClass = GetVehicleClass(curVeh)
-                    local maxweight = 0
-                    local slots = 0
-                    if vehicleClass == 0 then -- compacts
-                        maxweight = 45000
-                        slots = 35
-                    elseif vehicleClass == 1 then -- sedans
-                        maxweight = 110000
-                        slots = 45
-                    elseif vehicleClass == 2 then -- SUVs
-                        maxweight = 200000
-                        slots = 60
-                    elseif vehicleClass == 3 then -- coupes
-                        maxweight = 50000
-                        slots = 40
-                    elseif vehicleClass == 4 then -- muscle
-                        maxweight = 75000
-                        slots = 35
-                    elseif vehicleClass == 5 then -- sports classics
-                        maxweight = 50000
-                        slots = 35
-                    elseif vehicleClass == 6 then -- sports
-                        maxweight = 75000
-                        slots = 35
-                    elseif vehicleClass == 7 then -- super
-                        maxweight = 35000
-                        slots = 35
-                    elseif vehicleClass == 8 then -- motor cycles
-                        maxweight = 30000
-                        slots = 20
-                    elseif vehicleClass == 9 then -- offroad
-                        maxweight = 150000
-                        slots = 50
-                    elseif vehicleClass == 10 then -- industrial
-                        maxweight = 130000
-                        slots = 45
-                    elseif vehicleClass == 11 then -- utility
-                        maxweight = 200000
-                        slots = 60
-                    elseif vehicleClass == 12 then -- vans
-                        maxweight = 200000
-                        slots = 60
-                    elseif vehicleClass == 13 then -- cycles
-                        maxweight = 0
-                        slots = 0
-                    elseif vehicleClass == 14 then -- boats
-                        maxweight = 150000
-                        slots = 60
-                    elseif vehicleClass == 15 then -- helicopters
-                        maxweight = 130000
-                        slots = 60
-                    elseif vehicleClass == 16 then -- planes
-                        maxweight = 130000
-                        slots = 60
-                    elseif vehicleClass == 17 then -- service
-                        maxweight = 110000
-                        slots = 45
-                    elseif vehicleClass == 18 then -- emergency
-                        maxweight = 150000
-                        slots = 60
-                    elseif vehicleClass == 19 then -- military
-                        maxweight = 130000
-                        slots = 45
-                    elseif vehicleClass == 20 then -- commercial
-                        maxweight = 150000
-                        slots = 60
-                    else
-                        maxweight = 60000
-                        slots = 35
-                    end
-                    local other = {
-                        maxweight = maxweight,
-                        slots = slots,
-                    }
-                    TriggerServerEvent("inventory:server:OpenInventory", "trunk", CurrentVehicle, other)
-                    OpenTrunk()
-                elseif CurrentGlovebox ~= nil then
-                    TriggerServerEvent("inventory:server:OpenInventory", "glovebox", CurrentGlovebox)
-                elseif CurrentDrop ~= 0 then
-                    TriggerServerEvent("inventory:server:OpenInventory", "drop", CurrentDrop)
-                elseif VendingMachine ~= nil then
-                    local ShopItems = {}
-                    ShopItems.label = "Vending Machine"
-                    ShopItems.items = Config.VendingItem
-                    ShopItems.slots = #Config.VendingItem
-                    TriggerServerEvent("inventory:server:OpenInventory", "shop", "Vendingshop_"..math.random(1, 99), ShopItems)
+            if CurrentVehicle ~= nil then		-- Trunk
+                local vehicleClass = GetVehicleClass(curVeh)
+                local maxweight = 0
+                local slots = 0
+                if vehicleClass == 0 then -- compacts
+                    maxweight = 45000
+                    slots = 35
+                elseif vehicleClass == 1 then -- sedans
+                    maxweight = 110000
+                    slots = 45
+                elseif vehicleClass == 2 then -- SUVs
+                    maxweight = 200000
+                    slots = 60
+                elseif vehicleClass == 3 then -- coupes
+                    maxweight = 50000
+                    slots = 40
+                elseif vehicleClass == 4 then -- muscle
+                    maxweight = 75000
+                    slots = 35
+                elseif vehicleClass == 5 then -- sports classics
+                    maxweight = 50000
+                    slots = 35
+                elseif vehicleClass == 6 then -- sports
+                    maxweight = 75000
+                    slots = 35
+                elseif vehicleClass == 7 then -- super
+                    maxweight = 35000
+                    slots = 35
+                elseif vehicleClass == 8 then -- motor cycles
+                    maxweight = 30000
+                    slots = 20
+                elseif vehicleClass == 9 then -- offroad
+                    maxweight = 150000
+                    slots = 50
+                elseif vehicleClass == 10 then -- industrial
+                    maxweight = 130000
+                    slots = 45
+                elseif vehicleClass == 11 then -- utility
+                    maxweight = 200000
+                    slots = 60
+                elseif vehicleClass == 12 then -- vans
+                    maxweight = 200000
+                    slots = 60
+                elseif vehicleClass == 13 then -- cycles
+                    maxweight = 0
+                    slots = 0
+                elseif vehicleClass == 14 then -- boats
+                    maxweight = 150000
+                    slots = 60
+                elseif vehicleClass == 15 then -- helicopters
+                    maxweight = 130000
+                    slots = 60
+                elseif vehicleClass == 16 then -- planes
+                    maxweight = 130000
+                    slots = 60
+                elseif vehicleClass == 17 then -- service
+                    maxweight = 110000
+                    slots = 45
+                elseif vehicleClass == 18 then -- emergency
+                    maxweight = 150000
+                    slots = 60
+                elseif vehicleClass == 19 then -- military
+                    maxweight = 130000
+                    slots = 45
+                elseif vehicleClass == 20 then -- commercial
+                    maxweight = 150000
+                    slots = 60
                 else
                     maxweight = 60000
                     slots = 35
