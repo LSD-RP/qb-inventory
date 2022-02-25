@@ -71,6 +71,18 @@ Config.CraftingItems = {
         points = 3,
     },
     [4] = {
+        name = "goldbar",
+        amount = 1,
+        info = {},
+        costs = {
+            ["goldnug"] = 10,
+        },
+        type = "item",
+        slot = 4,
+        threshold = 0,
+        points = 4,
+    },
+    [5] = {
         name = "radioscanner",
         amount = 50,
         info = {},
@@ -80,11 +92,11 @@ Config.CraftingItems = {
             ["steel"] = 40,
         },
         type = "item",
-        slot = 4,
+        slot = 5,
         threshold = 0,
-        points = 4,
+        points = 5,
     },
-    [5] = {
+    [6] = {
         name = "gatecrack",
         amount = 50,
         info = {},
@@ -96,11 +108,11 @@ Config.CraftingItems = {
             ["electronickit"] = 2,
         },
         type = "item",
-        slot = 5,
+        slot = 6,
         threshold = 110,
-        points = 5,
+        points = 6,
     },
-    [6] = {
+    [7] = {
         name = "handcuffs",
         amount = 50,
         info = {},
@@ -110,11 +122,11 @@ Config.CraftingItems = {
             ["aluminum"] = 28,
         },
         type = "item",
-        slot = 6,
+        slot = 7,
         threshold = 160,
-        points = 6,
+        points = 7,
     },
-    [7] = {
+    [8] = {
         name = "repairkit",
         amount = 50,
         info = {},
@@ -124,11 +136,11 @@ Config.CraftingItems = {
             ["plastic"] = 61,
         },
         type = "item",
-        slot = 7,
+        slot = 8,
         threshold = 200,
-        points = 7,
+        points = 8,
     },
-    [8] = {
+    [9] = {
         name = "pistol_ammo",
         amount = 50,
         info = {},
@@ -138,11 +150,11 @@ Config.CraftingItems = {
             ["copper"] = 26,
         },
         type = "item",
-        slot = 8,
+        slot = 9,
         threshold = 250,
-        points = 8,
+        points = 9,
     },
-    [9] = {
+    [10] = {
         name = "ironoxide",
         amount = 50,
         info = {},
@@ -151,11 +163,11 @@ Config.CraftingItems = {
             ["glass"] = 30,
         },
         type = "item",
-        slot = 9,
+        slot = 10,
         threshold = 300,
-        points = 9,
+        points = 10,
     },
-    [10] = {
+    [11] = {
         name = "aluminumoxide",
         amount = 50,
         info = {},
@@ -164,11 +176,11 @@ Config.CraftingItems = {
             ["glass"] = 30,
         },
         type = "item",
-        slot = 10,
+        slot = 11,
         threshold = 300,
-        points = 10,
+        points = 11,
     },
-    [11] = {
+    [12] = {
         name = "armor",
         amount = 50,
         info = {},
@@ -179,11 +191,11 @@ Config.CraftingItems = {
             ["aluminum"] = 22,
         },
         type = "item",
-        slot = 11,
+        slot = 12,
         threshold = 350,
-        points = 11,
+        points = 12,
     },
-    [12] = {
+    [13] = {
         name = "drill",
         amount = 50,
         info = {},
@@ -194,10 +206,11 @@ Config.CraftingItems = {
             ["advancedlockpick"] = 2,
         },
         type = "item",
-        slot = 12,
+        slot = 13,
         threshold = 1750,
-        points = 12,
+        points = 13,
     },
+    
 }
 
 Config.AttachmentCraftingLocation = vector3(88.91, 3743.88, 40.77)
@@ -229,7 +242,7 @@ Config.AttachmentCrafting = {
             },
             type = "item",
             slot = 2,
-            threshold = 10,
+            threshold = 2,
             points = 2,
         },
         [3] = {
@@ -243,7 +256,7 @@ Config.AttachmentCrafting = {
             },
             type = "item",
             slot = 3,
-            threshold = 25,
+            threshold = 5,
             points = 3,
         },
         [4] = {
@@ -257,7 +270,7 @@ Config.AttachmentCrafting = {
             },
             type = "item",
             slot = 4,
-            threshold = 50,
+            threshold = 9,
             points = 4,
         },
         [5] = {
