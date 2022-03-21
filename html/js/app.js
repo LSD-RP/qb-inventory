@@ -446,42 +446,6 @@ function FormatItemInfo(itemData) {
             $(".item-info-description").html(
                 "<p>" + itemData.info.uses + " uses left.</p>"
             );
-        } else if (itemData.type == "weapon") {
-            $(".item-info-title").html("<p>" + itemData.label + "</p>");
-            if (itemData.info.ammo == undefined) {
-                itemData.info.ammo = 0;
-            } else {
-                itemData.info.ammo != null ? itemData.info.ammo : 0;
-            }
-            if (itemData.info.attachments != null) {
-                var attachmentString = "";
-                $.each(itemData.info.attachments, function(i, attachment) {
-                    if (i == itemData.info.attachments.length - 1) {
-                        attachmentString += attachment.label;
-                    } else {
-                        attachmentString += attachment.label + ", ";
-                    }
-                });
-                $(".item-info-description").html(
-                    "<p><strong>Serial Number: </strong><span>" +
-                    itemData.info.serie +
-                    "</span></p><p><strong>Munition: </strong><span>" +
-                    itemData.info.ammo +
-                    "</span></p><p><strong>Attachments: </strong><span>" +
-                    attachmentString +
-                    "</span></p>"
-                );
-            } else {
-                $(".item-info-description").html(
-                    "<p><strong>Serial Number: </strong><span>" +
-                    itemData.info.serie +
-                    "</span></p><p><strong>Munition: </strong><span>" +
-                    itemData.info.ammo +
-                    "</span></p><p>" +
-                    itemData.description +
-                    "</p>"
-                );
-            }
         } else if (itemData.name == "filled_evidence_bag") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             if (itemData.info.type == "casing") {
@@ -553,6 +517,42 @@ function FormatItemInfo(itemData) {
                 itemData.info.cash +
                 "</span></p>"
             );
+        } else if (itemData.type == "weapon") {
+            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            if (itemData.info.ammo == undefined) {
+                itemData.info.ammo = 0;
+            } else {
+                itemData.info.ammo != null ? itemData.info.ammo : 0;
+            }
+            if (itemData.info.attachments != null) {
+                var attachmentString = "";
+                $.each(itemData.info.attachments, function(i, attachment) {
+                    if (i == itemData.info.attachments.length - 1) {
+                        attachmentString += attachment.label;
+                    } else {
+                        attachmentString += attachment.label + ", ";
+                    }
+                });
+                $(".item-info-description").html(
+                    "<p><strong>Serial Number: </strong><span>" +
+                    itemData.info.serie +
+                    "</span></p><p><strong>Munition: </strong><span>" +
+                    itemData.info.ammo +
+                    "</span></p><p><strong>Attachments: </strong><span>" +
+                    attachmentString +
+                    "</span></p>"
+                );
+            } else {
+                $(".item-info-description").html(
+                    "<p><strong>Serial Number: </strong><span>" +
+                    itemData.info.serie +
+                    "</span></p><p><strong>Munition: </strong><span>" +
+                    itemData.info.ammo +
+                    "</span></p><p>" +
+                    itemData.description +
+                    "</p>"
+                );
+            }
         } else if (itemData.name == "markedbills") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(

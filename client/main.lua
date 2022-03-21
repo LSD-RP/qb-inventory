@@ -146,20 +146,41 @@ local function openAnim()
 end
 
 local function ItemsToItemInfo()
-	itemInfos = {
-		[1] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 22x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 32x."},
-		[2] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 30x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 42x."},
-		[3] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 30x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 45x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 28x."},
-		[4] = {costs = QBCore.Shared.Items["electronickit"]["label"] .. ": 2x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 52x, "..QBCore.Shared.Items["steel"]["label"] .. ": 40x."},
-		[5] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 10x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 50x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 30x, "..QBCore.Shared.Items["iron"]["label"] .. ": 17x, "..QBCore.Shared.Items["electronickit"]["label"] .. ": 1x."},
-		[6] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 36x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 24x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 28x."},
-		[7] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 32x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 43x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 61x."},
-		[8] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 50x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 37x, "..QBCore.Shared.Items["copper"]["label"] .. ": 26x."},
-		[9] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 60x, " ..QBCore.Shared.Items["glass"]["label"] .. ": 30x."},
-		[10] = {costs = QBCore.Shared.Items["aluminum"]["label"] .. ": 60x, " ..QBCore.Shared.Items["glass"]["label"] .. ": 30x."},
-		[11] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 33x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 44x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 55x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 22x."},
-		[12] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 50x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 50x, "..QBCore.Shared.Items["screwdriverset"]["label"] .. ": 3x, "..QBCore.Shared.Items["advancedlockpick"]["label"] .. ": 2x."},
-	}
+    itemInfos = {
+        [1] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 25x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 25x."},
+        [2] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 40x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 15x, " .. QBCore.Shared.Items["iron"]["label"] .. ": 15x."},
+        [3] = {costs = QBCore.Shared.Items["copper"]["label"] .. ": 50x, " ..QBCore.Shared.Items["glass"]["label"] .. ": 10x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 20x."},
+        [4] = {costs = QBCore.Shared.Items["goldbar"]["label"] .. ": 10x, " ..QBCore.Shared.Items["goldnug"]["label"]},
+	    [5] = {costs = QBCore.Shared.Items["aluminum"]["label"] .. ": 50x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 15x, ".. QBCore.Shared.Items["rubber"]["label"] .. ": 25x."},
+        [6] = {costs = QBCore.Shared.Items["copper"]["label"] .. ": 20x, " ..QBCore.Shared.Items["iron"]["label"] .. ": 30x, "..QBCore.Shared.Items["rubber"]["label"] .. ": 10x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 20x."},
+	    [7] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 45x, " ..QBCore.Shared.Items["rubber"]["label"] .. ": 15x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 15x."},
+	    [8] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 45x, " ..QBCore.Shared.Items["leather"]["label"] .. ": 15x, "..QBCore.Shared.Items["rubber"]["label"] .. ": 15x."},
+	    [9] = {costs = QBCore.Shared.Items["electronickit"]["label"] .. ": 2x, " ..QBCore.Shared.Items["copper"]["label"] .. ": 35x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 50x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 30x, "..QBCore.Shared.Items["iron"]["label"] .. ": 15x."},
+        [10] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 25x, " ..QBCore.Shared.Items["metalscrap"]["label"] .. ": 15x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 30x."},
+	    [11] = {costs = QBCore.Shared.Items["glass"]["label"] .. ": 20x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 10x."},
+	    [12] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 30x, " ..QBCore.Shared.Items["copper"]["label"] .. ": 20x, ".. QBCore.Shared.Items["metalscrap"]["label"] .. ": 45x."},
+	    [13] = {costs = QBCore.Shared.Items["plastic"]["label"] .. ": 30x, " ..QBCore.Shared.Items["rubber"]["label"] .. ": 15x, ".. QBCore.Shared.Items["aluminum"]["label"] .. ": 50x."},
+	    [14] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 35x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 20x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 30x."},
+        [15] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 10x, " ..QBCore.Shared.Items["iron"]["label"] .. ": 50x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 15x."},
+        [16] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 35x, " ..QBCore.Shared.Items["copper"]["label"] .. ": 50x, "..QBCore.Shared.Items["rubber"]["label"] .. ": 20x."},
+	    [17] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 45x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 50x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 25x, "..QBCore.Shared.Items["glass"]["label"] .. ": 50x."},
+	    [18] = {costs = QBCore.Shared.Items["glass"]["label"] .. ": 30x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 15x, "..QBCore.Shared.Items["beer"]["label"] .. ": 1x, "..QBCore.Shared.Items["leather"]["label"] .. ": 3x."},
+       	[19] = {costs = QBCore.Shared.Items["aluminum"]["label"] .. ": 100x, " ..QBCore.Shared.Items["metalscrap"]["label"] .. ": 25x, "..QBCore.Shared.Items["leather"]["label"] .. ": 25x."},
+	    [20] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 35x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 35x, "..QBCore.Shared.Items["copper"]["label"] .. ": 35x."},
+	    [21] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 75x, " ..QBCore.Shared.Items["ironoxide"]["label"] .. ": 5x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 55x, "..QBCore.Shared.Items["leather"]["label"] .. ": 20x,"..QBCore.Shared.Items["copper"]["label"] .. ": 100x. "},
+        [22] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 50x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 10x."},
+        [23] = {costs = QBCore.Shared.Items["rubber"]["label"] .. ": 50x, " ..QBCore.Shared.Items["leather"]["label"] .. ": 40x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 60x."},
+        [24] = {costs = QBCore.Shared.Items["copper"]["label"] .. ": 45x, " ..QBCore.Shared.Items["glass"]["label"] .. ": 20x, "..QBCore.Shared.Items["electronickit"]["label"] .. ": 2x, "..QBCore.Shared.Items["rubber"]["label"] .. ": 20x."},
+	    [25] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 45x, " ..QBCore.Shared.Items["glass"]["label"] .. ": 30x."},
+        [26] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 50x, " ..QBCore.Shared.Items["iron"]["label"] .. ": 50x, "..QBCore.Shared.Items["leather"]["label"] .. ": 20x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 20x."},
+        [27] = {costs = QBCore.Shared.Items["copper"]["label"] .. ": 45x, " ..QBCore.Shared.Items["iron"]["label"] .. ": 35x, "..QBCore.Shared.Items["ironoxide"]["label"] .. ": 5x."},
+       	[28] = {costs = QBCore.Shared.Items["aluminum"]["label"] .. ": 55x, " ..QBCore.Shared.Items["glass"]["label"] .. ": 30x."},
+       	[29] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 35x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 40x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 25x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 25x,"..QBCore.Shared.Items["leather"]["label"] .. ": 30x, "..QBCore.Shared.Items["rubber"]["label"] .. ": 25x."},
+        [30] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 100x, " ..QBCore.Shared.Items["aluminum"]["label"] .. ": 30x, "..QBCore.Shared.Items["iron"]["label"] .. ": 40x, "..QBCore.Shared.Items["leather"]["label"] .. ": 15x."},
+	    [31] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 50x, " ..QBCore.Shared.Items["steel"]["label"] .. ": 50x, "..QBCore.Shared.Items["screwdriverset"]["label"] .. ": 3x, "..QBCore.Shared.Items["advancedlockpick"]["label"] .. ": 2x."},
+        [32] = {costs = QBCore.Shared.Items["ironoxide"]["label"] .. ": 10x, " ..QBCore.Shared.Items["aluminumoxide"]["label"] .. ": 10x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 50x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 35x, "..QBCore.Shared.Items["rubber"]["label"] .. ": 10x, "..QBCore.Shared.Items["copper"]["label"] .. ": 35x."},
+        [33] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 100x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 125x, "..QBCore.Shared.Items["steel"]["label"] .. ": 100x, "..QBCore.Shared.Items["copper"]["label"] .. ": 35x,"..QBCore.Shared.Items["rubber"]["label"] .. ": 50x. "},
+    }
 
 	local items = {}
 	for k, item in pairs(Config.CraftingItems) do
@@ -185,20 +206,45 @@ local function ItemsToItemInfo()
 end
 
 local function SetupAttachmentItemsInfo()
-	itemInfos = {
-		[1] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 140x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 250x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 60x"},
-		[2] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 165x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 285x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 75x"},
-		[3] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 190x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 305x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 85x, " .. QBCore.Shared.Items["smg_extendedclip"]["label"] .. ": 1x"},
-		[4] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 205x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 340x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 110x, " .. QBCore.Shared.Items["smg_extendedclip"]["label"] .. ": 2x"},
-		[5] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 230x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 365x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 130x"},
-		[6] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 255x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 390x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 145x"},
-		[7] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 270x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 435x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 155x"},
-		[8] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 300x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 469x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 170x"},
-	}
+    itemInfos = {
+        [1] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 45x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 40x, ".. QBCore.Shared.Items["aluminum"]["label"] .. ": 20x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 18x"},
+        [2] = {costs = QBCore.Shared.Items["electronickit"]["label"] .. ": 1x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 5x, ".. QBCore.Shared.Items["rubber"]["label"] .. ": 10x, " .. QBCore.Shared.Items["metalscrap"]["label"] .. ": 50x"},
+        [3] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 60x, " .. QBCore.Shared.Items["aluminum"]["label"] .. ": 30x, ".. QBCore.Shared.Items["steel"]["label"] .. ": 40x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 30x"},
+        [4] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 60x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 30x, ".. QBCore.Shared.Items["aluminum"]["label"] .. ": 40x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 30x"},
+        [5] = {costs = QBCore.Shared.Items["kurkakola"]["label"] .. ": 1x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 6x, ".. QBCore.Shared.Items["metalscrap"]["label"] .. ": 40x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 45x"},
+        [6] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 15x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 10x, " .. QBCore.Shared.Items["aluminum"]["label"] .. ": 10x"},
+        [7] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 15x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 10x, " .. QBCore.Shared.Items["aluminum"]["label"] .. ": 10x"},
+        [8] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 15x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 50x"},
+        [9] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 15x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 50x, ".. QBCore.Shared.Items["aluminum"]["label"] .. ": 50x"},
+        [10] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 40x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 30x, ".. QBCore.Shared.Items["ironoxide"]["label"] .. ": 2x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 60x"},
+        [11] = {costs = QBCore.Shared.Items["glass"]["label"] .. ": 75x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 25x, ".. QBCore.Shared.Items["rubber"]["label"] .. ": 20x, " .. QBCore.Shared.Items["iron"]["label"] .. ": 10x,  ".. QBCore.Shared.Items["steel"]["label"] .. ": 65x,  ".. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 1x"},
+        [12] = {costs = QBCore.Shared.Items["spray_remover"]["label"] .. ": 1x, " .. QBCore.Shared.Items["metalscrap"]["label"] .. ": 75x, ".. QBCore.Shared.Items["plastic"]["label"] .. ": 30x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 75x,  ".. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 1x"},
+        [13] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 30x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 20x, " .. QBCore.Shared.Items["iron"]["label"] .. ": 20x"},
+        [14] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 15x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 20x, " .. QBCore.Shared.Items["iron"]["label"] .. ": 20x"},
+        [15] = {costs = QBCore.Shared.Items["electronickit"]["label"] .. ": 1x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 10x, ".. QBCore.Shared.Items["rubber"]["label"] .. ": 10x, " .. QBCore.Shared.Items["aluminum"]["label"] .. ": 75x,  ".. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 1x"},
+        [16] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 30x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 30x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 25x"},
+        [17] = {costs = QBCore.Shared.Items["rubber"]["label"] .. ": 120x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 45x"},
+        [18] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 130x, " .. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 1x, ".. QBCore.Shared.Items["iron"]["label"] .. ": 40x, " .. QBCore.Shared.Items["metalscrap"]["label"] .. ": 75x,  ".. QBCore.Shared.Items["copper"]["label"] .. ": 30x,  ".. QBCore.Shared.Items["spray_remover"]["label"] .. ": 1x"},
+        [19] = {costs = QBCore.Shared.Items["glass"]["label"] .. ": 80x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 25x, ".. QBCore.Shared.Items["rubber"]["label"] .. ": 35x, " .. QBCore.Shared.Items["iron"]["label"] .. ": 10x,  ".. QBCore.Shared.Items["steel"]["label"] .. ": 35x,  ".. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 1x"},
+        [20] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 70x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 60x, ".. QBCore.Shared.Items["aluminum"]["label"] .. ": 40x, " .. QBCore.Shared.Items["weapon_hammer"]["label"] .. ": 1x"},
+        [21] = {costs = QBCore.Shared.Items["glass"]["label"] .. ": 80x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 25x, ".. QBCore.Shared.Items["rubber"]["label"] .. ": 35x, " .. QBCore.Shared.Items["iron"]["label"] .. ": 10x,  ".. QBCore.Shared.Items["steel"]["label"] .. ": 35x,  ".. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 1x"},
+        [22] = {costs = QBCore.Shared.Items["kurkakola"]["label"] .. ": 1x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 150x, ".. QBCore.Shared.Items["leather"]["label"] .. ": 35x, " .. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 1x,  ".. QBCore.Shared.Items["steel"]["label"] .. ": 150x"},
+        [23] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 120x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 120x, ".. QBCore.Shared.Items["metalscrap"]["label"] .. ": 40x, ".. QBCore.Shared.Items["leather"]["label"] .. ": 35x, " .. QBCore.Shared.Items["weapon_hammer"]["label"] .. ": 1x"},
+        [24] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 40x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 40x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 40x"},
+        [25] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 120x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 120x, ".. QBCore.Shared.Items["metalscrap"]["label"] .. ": 40x, ".. QBCore.Shared.Items["leather"]["label"] .. ": 35x, " .. QBCore.Shared.Items["weapon_hammer"]["label"] .. ": 1x"},
+        [26] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 120x, " .. QBCore.Shared.Items["copper"]["label"] .. ": 120x, ".. QBCore.Shared.Items["metalscrap"]["label"] .. ": 40x, ".. QBCore.Shared.Items["leather"]["label"] .. ": 35x, " .. QBCore.Shared.Items["weapon_hammer"]["label"] .. ": 1x"},
+        [27] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 100x, " .. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 2x, ".. QBCore.Shared.Items["iron"]["label"] .. ": 200x, " .. QBCore.Shared.Items["metalscrap"]["label"] .. ": 75x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 40x,  ".. QBCore.Shared.Items["spray_remover"]["label"] .. ": 1x"},
+        [28] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 40x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 160x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 160x"},
+        [29] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 40x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 160x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 160x"},
+        -- [30] = {costs = QBCore.Shared.Items["leather"]["label"] .. ": 40x, " .. QBCore.Shared.Items["spray"]["label"] .. ": 1x, ".. QBCore.Shared.Items["copper"]["label"] .. ": 120x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 120x"},
+        [31] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 100x, " .. QBCore.Shared.Items["screwdriverset"]["label"] .. ": 2x, ".. QBCore.Shared.Items["iron"]["label"] .. ": 200x, " .. QBCore.Shared.Items["metalscrap"]["label"] .. ": 75x, " .. QBCore.Shared.Items["leather"]["label"] .. ": 40x,  ".. QBCore.Shared.Items["spray_remover"]["label"] .. ": 1x"},
+
+    }
 
 	local items = {}
 	for k, item in pairs(Config.AttachmentCrafting["items"]) do
 		local itemInfo = QBCore.Shared.Items[item.name:lower()]
+        print(item.name:lower())
 		items[item.slot] = {
 			name = itemInfo["name"],
 			amount = tonumber(item.amount),
@@ -439,7 +485,7 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         SetCurrentPedWeapon(ped, GetHashKey(weaponName), true)
         TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
         currentWeapon = weaponName
-    elseif weaponName == "weapon_snowball" then
+    elseif weaponName == "weapon_snowball" or weaponName == "snowball" then
         GiveWeaponToPed(ped, GetHashKey(weaponName), 10, false, false)
         SetPedAmmo(ped, GetHashKey(weaponName), 10)
         SetCurrentPedWeapon(ped, GetHashKey(weaponName), true)
@@ -760,6 +806,7 @@ RegisterNUICallback("CloseInventory", function()
         TriggerServerEvent("inventory:server:SaveInventory", "drop", CurrentDrop)
         CurrentDrop = nil
     end
+    TriggerServerEvent('qb-drugs:server:updateInventory')
     SetNuiFocus(false, false)
     inInventory = false
 end)
@@ -903,7 +950,7 @@ CreateThread(function()
             if distance < 10 then
                 if distance < 1.5 then
                     sleep = 0
-                    DrawText3Ds(Config.AttachmentCraftingLocation, "~g~E~w~ - Craft")
+                    DrawText3Ds(Config.AttachmentCraftingLocation.x,Config.AttachmentCraftingLocation.y,Config.AttachmentCraftingLocation.z, "~g~E~w~ - Craft")
                     if IsControlJustPressed(0, 38) then
                         local crafting = {}
                         crafting.label = "Attachment Crafting"
