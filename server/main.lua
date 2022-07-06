@@ -1315,6 +1315,26 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
 			else
 				TriggerClientEvent('QBCore:Notify', src, "You don't have enough cash..", "error")
 			end
+		elseif QBCore.Shared.SplitStr(shopType, "_")[1] == "limeysitemshop" then
+			if Player.Functions.RemoveMoney("cash", price, "limeysitemshop-bought-item") then
+				exports['qb-management']:AddMoney('limeys', price)
+				Player.Functions.AddItem(itemData.name, fromAmount, toSlot, itemData.info)
+				-- TriggerClientEvent('qb-shops:client:UpdateShop', src, QBCore.Shared.SplitStr(shopType, "_")[2], itemData, fromAmount)
+				TriggerClientEvent('qb-limeys:client:UpdateShop', src, QBCore.Shared.SplitStr(shopType, "_")[2], itemData, fromAmount)
+				TriggerClientEvent('QBCore:Notify', src, itemInfo["label"] .. " bought!", "success")
+				TriggerEvent("qb-log:server:CreateLog", "shops", "Shop item bought", "green", "**"..GetPlayerName(src) .. "** bought a " .. itemInfo["label"] .. " for $"..price)
+			elseif bankBalance >= price then
+				Player.Functions.RemoveMoney("bank", price, "limeysitemshop-bought-item")
+				exports['qb-management']:AddMoney('limeys', price)
+				Player.Functions.AddItem(itemData.name, fromAmount, toSlot, itemData.info)
+				TriggerClientEvent('qb-limeys:client:UpdateShop', src, QBCore.Shared.SplitStr(shopType, "_")[2], itemData, fromAmount)
+
+				-- TriggerClientEvent('qb-shops:client:UpdateShop', src, QBCore.Shared.SplitStr(shopType, "_")[2], itemData, fromAmount)
+				TriggerClientEvent('QBCore:Notify', src, itemInfo["label"] .. " bought!", "success")
+				TriggerEvent("qb-log:server:CreateLog", "shops", "Shop item bought", "green", "**"..GetPlayerName(src) .. "** bought a " .. itemInfo["label"] .. " for $"..price)
+			else
+				TriggerClientEvent('QBCore:Notify', src, "You don't have enough cash..", "error")
+			end
 		else
 			if Player.Functions.RemoveMoney("cash", price, "unkown-itemshop-bought-item") then
 				Player.Functions.AddItem(itemData.name, fromAmount, toSlot, itemData.info)

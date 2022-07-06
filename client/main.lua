@@ -156,7 +156,7 @@ local function ItemsToItemInfo()
 	    [7] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 45x, " ..QBCore.Shared.Items["rubber"]["label"] .. ": 15x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 15x."},
 	    [8] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 45x, " ..QBCore.Shared.Items["leather"]["label"] .. ": 15x, "..QBCore.Shared.Items["rubber"]["label"] .. ": 15x."},
 	    [9] = {costs = QBCore.Shared.Items["electronickit"]["label"] .. ": 2x, " ..QBCore.Shared.Items["copper"]["label"] .. ": 35x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 50x, "..QBCore.Shared.Items["aluminum"]["label"] .. ": 30x, "..QBCore.Shared.Items["iron"]["label"] .. ": 15x."},
-        [10] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 25x, " ..QBCore.Shared.Items["metalscrap"]["label"] .. ": 15x, "..QBCore.Shared.Items["plastic"]["label"] .. ": 30x."},
+        [10] = {costs = QBCore.Shared.Items["steel"]["label"] .. ": 35x, " ..QBCore.Shared.Items["metalscrap"]["label"] .. ": 50, "..QBCore.Shared.Items["plastic"]["label"] .. ": 30x."},
 	    [11] = {costs = QBCore.Shared.Items["glass"]["label"] .. ": 20x, " ..QBCore.Shared.Items["plastic"]["label"] .. ": 10x."},
 	    [12] = {costs = QBCore.Shared.Items["iron"]["label"] .. ": 30x, " ..QBCore.Shared.Items["copper"]["label"] .. ": 20x, ".. QBCore.Shared.Items["metalscrap"]["label"] .. ": 45x."},
 	    [13] = {costs = QBCore.Shared.Items["plastic"]["label"] .. ": 30x, " ..QBCore.Shared.Items["rubber"]["label"] .. ": 15x, ".. QBCore.Shared.Items["aluminum"]["label"] .. ": 50x."},
