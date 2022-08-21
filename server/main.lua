@@ -1624,3 +1624,19 @@ QBCore.Functions.CreateUseableItem("id_card", function(source, item)
 		end
 	end
 end)
+
+
+
+RegisterServerEvent('inventory:server:checkWeight', function()
+	local src = source
+	local Player = QBCore.Functions.GetPlayer(src)
+	if not Player then
+		return
+	end
+	local inv = Player.PlayerData.items
+	local weight = QBCore.Player.GetTotalWeight(inv)
+
+	TriggerClientEvent('inventory:client:checkWeight', src, weight)
+
+
+end)

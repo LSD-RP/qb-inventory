@@ -514,9 +514,9 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
             if weaponName == "weapon_fireextinguisher" then
                 ammo = 4000
             end
-	    if name ~= weaponName then
-                ammo = 0
-            end
+	        -- if name ~= weaponName then
+            --     ammo = 0
+            -- end
             GiveWeaponToPed(ped, GetHashKey(weaponName), 0, false, false)
             SetPedAmmo(ped, GetHashKey(weaponName), ammo)
             SetCurrentPedWeapon(ped, GetHashKey(weaponName), true)
@@ -905,6 +905,21 @@ RegisterNUICallback("GiveItem", function(data, cb)
     cb('ok')
 end)
 
+local speed = 1.0
+RegisterNetEvent('inventory:client:checkWeight',function(weight)
+        
+    if weight >= 90000 and weight <= 100000 then
+        speed = 0.95
+    elseif weight > 100000 and weight <= 110000 then
+        speed = 0.8
+    elseif weight > 110000 then
+        speed = 0.5
+    else
+        speed = 1.0
+    end
+
+end)
+
 -- Threads
 
 CreateThread(function()
@@ -1026,3 +1041,19 @@ CreateThread(function()
         Wait(sleep)
     end
 end)
+
+Citizen.CreateThread(function()
+    while true do
+        TriggerServerEvent('inventory:server:checkWeight')
+        Wait(15000)
+    end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        SetPedMoveRateOverride(PlayerPedId(), speed)
+        Wait(0)
+    end
+end)
+
+

@@ -582,6 +582,17 @@ function FormatItemInfo(itemData) {
         } else if (itemData.name == "labkey") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html("<p>Lab: " + itemData.info.lab + "</p>");
+        } else if (itemData.type == "potion") { 
+            $(".item-info-title").html("<p>" + itemData.label +"</p>");
+            $(".item-info-description").html(
+                "<p><strong>Duration: </strong><span>"+
+                itemData.info.duration +
+                " seconds</span></p>" +
+                "</br>" + 
+                "<p><strong>Modifier: </strong><span>"+
+                itemData.info.modifier +
+                "</span></p>"
+            );
         } else {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html("<p>" + itemData.description + "</p>");
