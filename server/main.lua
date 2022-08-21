@@ -449,6 +449,7 @@ local function CreateUsableItem(itemName, data)
 end
 
 exports("CreateUsableItem", CreateUsableItem)
+exports("CreateUseableItem", CreateUsableItem)
 
 ---Get the usable item data for the specified item
 ---@param itemName string The item to get the data for
