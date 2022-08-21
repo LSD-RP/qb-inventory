@@ -613,28 +613,22 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
         currentWeapon = weaponName
     else
-
         TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
+        local ammo = tonumber(weaponData.info.ammo) or 0
 
-        QBCore.Functions.TriggerCallback("weapon:server:GetWeaponAmmo", function(result, name)
-            local ammo = tonumber(result)
-            -- if weaponName == "weapon_petrolcan" or weaponName == "weapon_fireextinguisher" then
-            if weaponName == "weapon_fireextinguisher" then
-                ammo = 4000
-            end
-	        -- if name ~= weaponName then
-            --     ammo = 0
-            -- end
-            GiveWeaponToPed(ped, GetHashKey(weaponName), 0, false, false)
-            SetPedAmmo(ped, GetHashKey(weaponName), ammo)
-            SetCurrentPedWeapon(ped, GetHashKey(weaponName), true)
-            if weaponData.info.attachments ~= nil then
-                for _, attachment in pairs(weaponData.info.attachments) do
-                    GiveWeaponComponentToPed(ped, GetHashKey(weaponName), GetHashKey(attachment.component))
-                end
+        if weaponName == "weapon_fireextinguisher" then
+            ammo = 4000
+        end
 
+        GiveWeaponToPed(ped, weaponHash, ammo, false, false)
+        SetPedAmmo(ped, weaponHash, ammo)
+        SetCurrentPedWeapon(ped, weaponHash, true)
+
+        if weaponData.info.attachments then
+            for _, attachment in pairs(weaponData.info.attachments) do
+                GiveWeaponComponentToPed(ped, weaponHash, joaat(attachment.component))
             end
-        end)
+        end
 
         currentWeapon = weaponName
     end
