@@ -13,7 +13,6 @@ local CurrentGlovebox = nil
 local CurrentStash = nil
 local isCrafting = false
 local isHotbar = false
-local WeaponAttachments = {}
 
 --#endregion Variables
 
@@ -121,8 +120,8 @@ local function FormatWeaponAttachments(itemdata)
     itemdata.name = itemdata.name:upper()
     if itemdata.info.attachments ~= nil and next(itemdata.info.attachments) ~= nil then
         for _, v in pairs(itemdata.info.attachments) do
-            if WeaponAttachments[itemdata.name] ~= nil then
-                for key, value in pairs(WeaponAttachments[itemdata.name]) do
+            if exports['qb-weapons']:getConfigWeaponAttachments(itemdata.name) then
+                for key, value in pairs(exports['qb-weapons']:getConfigWeaponAttachments(itemdata.name)) do
                     if value.component == v.component then
                         local item = value.item
                         attachments[#attachments+1] = {
@@ -168,6 +167,12 @@ local function CloseTrunk()
         SetVehicleDoorShut(vehicle, 5, false)
     end
 end
+---Checks weight and size of the vehicle trunk
+local function GetTrunkSize(vehicleClass)
+    local trunkSize = Config.TrunkSpace[vehicleClass] or Config.TrunkSpace["default"]
+    return trunkSize[vehicleClass].maxweight, trunkSize[vehicleClass].slots
+end
+exports("GetTrunkSize", GetTrunkSize)
 
 ---Closes the inventory NUI
 local function closeInventory()
@@ -435,6 +440,10 @@ AddEventHandler('onResourceStop', function(name)
     if Config.UseItemDrop then RemoveAllNearbyDrops() end
 end)
 
+RegisterNetEvent("qb-inventory:client:closeinv", function()
+    closeInventory()
+end)
+
 RegisterNetEvent('inventory:client:CheckOpenState', function(type, id, label)
     local name = QBCore.Shared.SplitStr(label, "-")[2]
     if type == "stash" then
@@ -599,11 +608,13 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
     local weaponName = tostring(weaponData.name)
     local weaponHash = joaat(weaponData.name)
     if currentWeapon == weaponName then
+        TriggerEvent('weapons:client:DrawWeapon', nil)
         SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, true)
         RemoveAllPedWeapons(ped, true)
         TriggerEvent('weapons:client:SetCurrentWeapon', nil, shootbool)
         currentWeapon = nil
     elseif weaponName == "weapon_stickybomb" or weaponName == "weapon_pipebomb" or weaponName == "weapon_smokegrenade" or weaponName == "weapon_flare" or weaponName == "weapon_proxmine" or weaponName == "weapon_ball"  or weaponName == "weapon_molotov" or weaponName == "weapon_grenade" or weaponName == "weapon_bzgas" then
+        TriggerEvent('weapons:client:DrawWeapon', weaponName)
         GiveWeaponToPed(ped, weaponHash, 1, false, false)
         SetPedAmmo(ped, weaponHash, 1)
         SetCurrentPedWeapon(ped, weaponHash, true)
@@ -611,6 +622,7 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         currentWeapon = weaponName
 
     elseif weaponName == "weapon_snowball" then
+        TriggerEvent('weapons:client:DrawWeapon', weaponName)
         GiveWeaponToPed(ped, weaponHash, 10, false, false)
         SetPedAmmo(ped, weaponHash, 10)
         SetCurrentPedWeapon(ped, weaponHash, true)
@@ -618,6 +630,7 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
         currentWeapon = weaponName
     else
+        TriggerEvent('weapons:client:DrawWeapon', weaponName)
         TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
         local ammo = tonumber(weaponData.info.ammo) or 0
 
@@ -715,6 +728,7 @@ RegisterCommand('closeinv', function()
 end, false)
 
 RegisterCommand('inventory', function()
+    if IsNuiFocused() then return end
     if not isCrafting and not inInventory then
         if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
             local ped = PlayerPedId()
@@ -755,71 +769,53 @@ RegisterCommand('inventory', function()
 
             if CurrentVehicle ~= nil then		-- Trunk
                 local vehicleClass = GetVehicleClass(curVeh)
-                local maxweight = 0
-                local slots = 0
-                if vehicleClass == 0 then -- compacts
-                    maxweight = 45000
-                    slots = 35
-                elseif vehicleClass == 1 then -- sedans
-                    maxweight = 110000
-                    slots = 45
-                elseif vehicleClass == 2 then -- SUVs
-                    maxweight = 200000
-                    slots = 60
-                elseif vehicleClass == 3 then -- coupes
+                local maxweight
+                local slots
+                if vehicleClass == 0 then
+                    maxweight = 38000
+                    slots = 30
+                elseif vehicleClass == 1 then
                     maxweight = 50000
                     slots = 40
-                elseif vehicleClass == 4 then -- muscle
+                elseif vehicleClass == 2 then
                     maxweight = 75000
-                    slots = 35
-                elseif vehicleClass == 5 then -- sports classics
-                    maxweight = 50000
-                    slots = 35
-                elseif vehicleClass == 6 then -- sports
-                    maxweight = 75000
-                    slots = 35
-                elseif vehicleClass == 7 then -- super
-                    maxweight = 35000
-                    slots = 35
-                elseif vehicleClass == 8 then -- motor cycles
-                    maxweight = 30000
-                    slots = 20
-                elseif vehicleClass == 9 then -- offroad
-                    maxweight = 150000
                     slots = 50
-                elseif vehicleClass == 10 then -- industrial
-                    maxweight = 130000
-                    slots = 45
-                elseif vehicleClass == 11 then -- utility
-                    maxweight = 200000
-                    slots = 60
-                elseif vehicleClass == 12 then -- vans
-                    maxweight = 200000
-                    slots = 60
-                elseif vehicleClass == 13 then -- cycles
+                elseif vehicleClass == 3 then
+                    maxweight = 42000
+                    slots = 35
+                elseif vehicleClass == 4 then
+                    maxweight = 38000
+                    slots = 30
+                elseif vehicleClass == 5 then
+                    maxweight = 30000
+                    slots = 25
+                elseif vehicleClass == 6 then
+                    maxweight = 30000
+                    slots = 25
+                elseif vehicleClass == 7 then
+                    maxweight = 30000
+                    slots = 25
+                elseif vehicleClass == 8 then
+                    maxweight = 15000
+                    slots = 15
+                elseif vehicleClass == 9 then
+                    maxweight = 60000
+                    slots = 35
+                elseif vehicleClass == 12 then
+                    maxweight = 120000
+                    slots = 35
+                elseif vehicleClass == 13 then
                     maxweight = 0
                     slots = 0
-                elseif vehicleClass == 14 then -- boats
-                    maxweight = 150000
-                    slots = 60
-                elseif vehicleClass == 15 then -- helicopters
-                    maxweight = 130000
-                    slots = 60
-                elseif vehicleClass == 16 then -- planes
-                    maxweight = 130000
-                    slots = 60
-                elseif vehicleClass == 17 then -- service
-                    maxweight = 110000
-                    slots = 45
-                elseif vehicleClass == 18 then -- emergency
-                    maxweight = 150000
-                    slots = 60
-                elseif vehicleClass == 19 then -- military
-                    maxweight = 130000
-                    slots = 45
-                elseif vehicleClass == 20 then -- commercial
-                    maxweight = 150000
-                    slots = 60
+                elseif vehicleClass == 14 then
+                    maxweight = 120000
+                    slots = 50
+                elseif vehicleClass == 15 then
+                    maxweight = 120000
+                    slots = 50
+                elseif vehicleClass == 16 then
+                    maxweight = 120000
+                    slots = 50
                 else
                     maxweight = 60000
                     slots = 35
@@ -828,6 +824,7 @@ RegisterCommand('inventory', function()
                     maxweight = maxweight,
                     slots = slots,
                 }
+
                 TriggerServerEvent("inventory:server:OpenInventory", "trunk", CurrentVehicle, other)
                 OpenTrunk()
             elseif CurrentGlovebox then
@@ -848,7 +845,7 @@ RegisterCommand('inventory', function()
     end
 end, false)
 
-RegisterKeyMapping('inventory', 'Open Inventory', 'keyboard', 'F2')
+RegisterKeyMapping('inventory', Lang:t("inf_mapping.opn_inv"), 'keyboard', 'TAB')
 
 RegisterCommand('hotbar', function()
     isHotbar = not isHotbar
@@ -857,15 +854,16 @@ RegisterCommand('hotbar', function()
     end
 end, false)
 
-RegisterKeyMapping('hotbar', 'Toggles keybind slots', 'keyboard', 'TAB')
+RegisterKeyMapping('hotbar', Lang:t("inf_mapping.tog_slots"), 'keyboard', 'z')
 
 for i = 1, 6 do
     RegisterCommand('slot' .. i,function()
-        if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
+        if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not LocalPlayer.state.inv_busy then
             if i == 6 then
                 i = Config.MaxInventorySlots
             end
             TriggerServerEvent("inventory:server:UseItemSlot", i)
+	    closeInventory()
         end
     end, false)
     RegisterKeyMapping('slot' .. i, Lang:t("inf_mapping.use_item") .. i, 'keyboard', i)
@@ -896,13 +894,13 @@ end)
 RegisterNUICallback('RemoveAttachment', function(data, cb)
     local ped = PlayerPedId()
     local WeaponData = QBCore.Shared.Items[data.WeaponData.name]
-    local Attachment = WeaponAttachments[WeaponData.name:upper()][data.AttachmentData.attachment]
+    local Attachment = exports['qb-weapons']:getConfigWeaponAttachments(WeaponData.name:upper())[data.AttachmentData.attachment]
     QBCore.Functions.TriggerCallback('weapons:server:RemoveAttachment', function(NewAttachments)
         if NewAttachments ~= false then
             local Attachies = {}
             RemoveWeaponComponentFromPed(ped, joaat(data.WeaponData.name), joaat(Attachment.component))
             for _, v in pairs(NewAttachments) do
-                for _, pew in pairs(WeaponAttachments[WeaponData.name:upper()]) do
+                for _, pew in pairs(exports['qb-weapons']:getConfigWeaponAttachments(WeaponData.name:upper())) do
                     if v.component == pew.component then
                         local item = pew.item
                         Attachies[#Attachies+1] = {
