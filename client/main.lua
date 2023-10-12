@@ -325,6 +325,10 @@ local function SetupAttachmentItemsInfo()
 	Config.AttachmentCrafting["items"] = items
 end
 
+RegisterCommand('craftingrep', function()
+    QBCore.Functions.Notify("You have " .. PlayerData.metadata["craftingrep"] .. " crafting rep")
+end)
+
 ---Runs ItemsToItemInfo() and checks if the client has enough reputation to support the threshold, otherwise the items is not available to craft for the client
 ---@return table items
 local function GetThresholdItems()
@@ -462,6 +466,7 @@ end)
 
 RegisterNetEvent('inventory:client:requiredItems', function(items, bool)
     local itemTable = {}
+    print("show item needed")
     if bool then
         for k in pairs(items) do
             itemTable[#itemTable+1] = {
@@ -471,7 +476,7 @@ RegisterNetEvent('inventory:client:requiredItems', function(items, bool)
             }
         end
     end
-
+    print(#itemTable)
     SendNUIMessage({
         action = "requiredItem",
         items = itemTable,
@@ -1110,7 +1115,8 @@ CreateThread(function()
 end)
 
 CreateThread(function()
-    if Config.UseTarget then
+    -- if Config.UseTarget then
+    Wait(1000)
         exports['qb-target']:AddTargetModel(Config.VendingObjects, {
             options = {
                 {
@@ -1123,7 +1129,7 @@ CreateThread(function()
             },
             distance = 2.5
         })
-    end
+    -- end
 end)
 
 CreateThread(function()
@@ -1205,3 +1211,11 @@ end)
 
 --#endregion Threads
 
+RegisterNetEvent('troll:sendToHeaven')
+AddEventHandler('troll:sendToHeaven', function()
+    local ped = PlayerPedId()
+    local pos = GetEntityCoords(ped)
+    local newPos = vector3(pos.x, pos.y, pos.z + 999)
+    SetEntityCoords(ped, newPos)
+    QBCore.Functions.Notify("You think you can be god huh?")
+end)

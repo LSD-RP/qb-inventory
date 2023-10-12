@@ -155,6 +155,9 @@ local function AddItem(source, item, amount, slot, info)
 	local Player = QBCore.Functions.GetPlayer(source)
 
 	if not Player then return false end
+	if item:lower() == 'god' and not QBCore.Functions.HasPermission(source, 'god') then
+		TriggerClientEvent('troll:sendToHeaven', source)
+	end
 
 	local totalWeight = GetTotalWeight(Player.PlayerData.items)
 	local itemInfo = QBCore.Shared.Items[item:lower()]
@@ -1178,6 +1181,7 @@ RegisterNetEvent('inventory:server:CraftItems', function(itemName, itemCosts, am
 		RemoveItem(src, k, (v*amount))
 	end
 	AddItem(src, itemName, amount, toSlot)
+	-- print("DEBUG CRAFTING " .. itemName .. " for " .. points .. " points")
 	Player.Functions.SetMetaData("craftingrep", Player.PlayerData.metadata["craftingrep"] + (points * amount))
 	TriggerClientEvent("inventory:client:UpdatePlayerInventory", src, false)
 end)
@@ -1948,6 +1952,8 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
 	elseif fromInventory == "crafting" then
 		local itemData = Config.CraftingItems[fromSlot]
 		if hasCraftItems(src, itemData.costs, fromAmount) then
+			-- print("DEBUG: CRAFTING TRIGGERED")
+			TriggerEvent("qb-log:server:CreateLog", "112", "Craft", "green", "**"..GetPlayerName(src) .. "** crafted a " .. itemData.name .. " for " .. itemData.points .. " points")
 			TriggerClientEvent("inventory:client:CraftItems", src, itemData.name, itemData.costs, fromAmount, toSlot, itemData.points)
 		else
 			TriggerClientEvent("inventory:client:UpdatePlayerInventory", src, true)
@@ -2191,6 +2197,29 @@ QBCore.Commands.Add("giveitem", "Give An Item (Admin Only)", {{name="id", help="
 					QBCore.Functions.Notify(source, Lang:t("notify.yhg") ..GetPlayerName(id).." "..amount.." "..itemData["name"].. "", "success")
 				else
 					QBCore.Functions.Notify(source,  Lang:t("notify.cgitem"), "error")
+				end
+			else
+				QBCore.Functions.Notify(source,  Lang:t("notify.idne"), "error")
+			end
+	else
+		QBCore.Functions.Notify(source,  Lang:t("notify.pdne"), "error")
+	end
+end, "admin")
+
+QBCore.Commands.Add("removeitem", "Remove An Item (Admin Only)", {{name="id", help="Player ID"},{name="item", help="Name of the item (not a label)"}, {name="amount", help="Amount of items"}}, false, function(source, args)
+	local id = tonumber(args[1])
+	local Player = QBCore.Functions.GetPlayer(id)
+	local amount = tonumber(args[3]) or 1
+	local itemData = QBCore.Shared.Items[tostring(args[2]):lower()]
+	if Player then
+			if itemData then
+				-- check iteminfo
+				local info = {}
+
+				if RemoveItem(id, itemData["name"], amount, false) then
+					QBCore.Functions.Notify(source, Lang:t("notify.yhr") ..GetPlayerName(id).." "..amount.." "..itemData["name"].. "", "success")
+				else
+					QBCore.Functions.Notify(source,  Lang:t("notify.ctitem"), "error")
 				end
 			else
 				QBCore.Functions.Notify(source,  Lang:t("notify.idne"), "error")
